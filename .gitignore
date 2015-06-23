@@ -1,0 +1,10 @@
+.idea
+.settings
+target
+*.log
+.classpath
+.project
+test-output
+*.swp
+*.iml
+
