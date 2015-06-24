@@ -1,14 +1,16 @@
 package com.imine.backend.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 /**
  * Created by dev on 2015/6/24.
  */
-
 @XmlRootElement
 public class PersonInfo {
+    private int id;
     private int weight;
     private int pushUp;
     private int sitUp;
@@ -54,5 +56,13 @@ public class PersonInfo {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
