@@ -1,15 +1,13 @@
-package com.imine.backend.model;
+package com.imine.backend.dto.impl;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.imine.backend.dto.Dto;
+
 import java.util.Date;
 
 /**
- * Created by dev on 2015/6/24.
+ * Created by dev on 2015/6/25.
  */
-@XmlRootElement
-public class PersonInfo {
+public class PersonInfoDTO implements Dto{
     private int id;
     private int weight;
     private int pushUp;
