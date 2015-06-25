@@ -7,14 +7,12 @@ import java.util.Date;
 /**
  * Created by dev on 2015/6/25.
  */
-public class PersonInfoDTO implements Dto{
-    private int id;
+public class PersonInfoDTO implements Dto {
     private int weight;
     private int pushUp;
     private int sitUp;
     private int squad;
     private Date timestamp;
-
 
     public int getWeight() {
         return weight;
@@ -54,13 +52,5 @@ public class PersonInfoDTO implements Dto{
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
