@@ -2,57 +2,7 @@
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" version="1.0">
     <package>com.imine.backend.model</package>
     <entity class="PersonInfo">
-        <named-query name="ALBUM_LIST_SELECT_BY_CUSTOMER">
-            <query>select o from YalbumImpl as o where o.customer.uidPk = ?1 and o.deleteStatus = <![CDATA['1']]></query>
-        </named-query>
-        <named-query name="PERSON_INFO_LIST_SELECT_BY_USER">
-            <query>select p from PersonInfo as p where p.user.userId = ?1</query>
-        </named-query>
-        <named-query name="ALBUM_LIST_SELECT_BY_NAME_UID">
-            <query>select o from YalbumImpl as o where o.albumName = ?1 and o.customer.uidPk = ?2 and o.deleteStatus = <![CDATA['1']]></query>
-        </named-query>
-        <named-query name="COUNT_ALBUM_IN_CUSTOMER">
-            <query>SELECT COUNT(o.uidPk) FROM YalbumImpl as o where o.customer.uidPk = ?1 and o.deleteStatus = <![CDATA['1']]></query>
-        </named-query>
-        <named-query name="COUNT_ALBUM_IN_CUSTOMER_ALBUMNAME">
-            <query>SELECT COUNT(o.uidPk) FROM YalbumImpl as o where o.customer.uidPk = ?1 and o.albumName = ?2 and o.deleteStatus = <![CDATA['1']]></query>
-        </named-query>
-    </entity>
-    <entity class="YimageImpl">
-        <named-query name="IMAGE_LIST_SELECT_BY_RANGE">
-            <query>select o from YimageImpl as o where o.uidPk &gt;= ?1 and o.uidPk &lt; ?2 order by o.uidPk ASC</query>
-        </named-query>
 
-        <named-query name="IMAGE_LIST_SELECT_BY_GUIDLIST_CREATETIME">
-            <query>select o from YimageImpl as o where o.guid in (:list) and o.insTime &gt; :param_latestDate</query>
-        </named-query>
-
-        <named-query name="IMAGE_SELECT_BY_GUID">
-            <query>select o from YimageImpl as o where o.guid = ?1</query>
-        </named-query>
-    </entity>
-    <entity class="YimagecounterImpl">
-    </entity>
-    <entity class="YalbumimagesImpl">
-        <named-query name="IMAGE_LIST_SELECT_BY_ALBUM">
-            <query>select r.image from YalbumimagesImpl as r where r.album.uidPk = ?1</query>
-        </named-query>
-        <named-query name="COUNT_IMAGE_IN_ALBUM">
-            <query>select COUNT(r.uidPk) from YalbumimagesImpl as r where r.album.uidPk = ?1</query>
-        </named-query>
-        <named-query name="ALBUMIMAGE_SELECT_BY_ALBUM_IMAGE">
-            <query>select r from YalbumimagesImpl as r where r.album.uidPk = ?1 and r.image.uidPk = ?2</query>
-        </named-query>
-        <named-query name="ALBUMIMAGE_SELECT_BY_NOT_ALBUM_IMAGE">
-            <query>select r from YalbumimagesImpl as r where r.album.uidPk &lt;&gt; ?1 and r.image.uidPk = ?2</query>
-        </named-query>
-        <named-query name="ALBUMIMAGE_SELECT_BY_ALBUM_ID">
-            <query>select r from YalbumimagesImpl as r where r.album.uidPk = ?1</query>
-        </named-query>
-
-        <named-query name="IMAGE_LIST_SELECT_BY_ALBUM_NAME">
-            <query>select r.image from YalbumimagesImpl as r where r.album.albumName = ?1</query>
-        </named-query>
     </entity>
 
 </entity-mappings>

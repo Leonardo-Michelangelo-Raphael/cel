@@ -15,23 +15,36 @@ import java.util.Date;
 public class PersonInfo implements Serializable {
     public static final String TABLE_NAME = "PERSON_INFO";
 
-    private long personInfoUid;
-
-    private User user;
-
-    private int weight;
-
-    private int sitUp;
-
-    private int pushUp;
-
-    private int squad;
-
-    private Date timestamp;
-
     @Id
     @Column(name = "PERSON_INFO_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = TABLE_NAME)
+    private long personInfoUid;
+
+    @ManyToOne(targetEntity = User.class, cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    @Basic
+    @Column(name = "WEIGHT", nullable = false)
+    private int weight;
+
+    @Basic
+    @Column(name = "SIT_UP", nullable = false)
+    private int sitUp;
+
+    @Basic
+    @Column(name = "PUSH_UP", nullable = false)
+    private int pushUp;
+
+    @Basic
+    @Column(name = "SQUAD", nullable = false)
+    private int squad;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "TIMESTAMP")
+    private Date timestamp;
+
+
     public long getPersonInfoUid() {
         return personInfoUid;
     }
@@ -40,8 +53,7 @@ public class PersonInfo implements Serializable {
         this.personInfoUid = personInfoUid;
     }
 
-    @ManyToOne(targetEntity = User.class, cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID")
+
     public User getUser() {
         return user;
     }
@@ -50,8 +62,7 @@ public class PersonInfo implements Serializable {
         this.user = user;
     }
 
-    @Basic
-    @Column(name = "WEIGHT", nullable = false)
+
     public int getWeight() {
         return weight;
     }
@@ -60,8 +71,7 @@ public class PersonInfo implements Serializable {
         this.weight = weight;
     }
 
-    @Basic
-    @Column(name = "SIT_UP", nullable = false)
+
     public int getSitUp() {
         return sitUp;
     }
@@ -70,8 +80,7 @@ public class PersonInfo implements Serializable {
         this.sitUp = sitUp;
     }
 
-    @Basic
-    @Column(name = "PUSH_UP", nullable = false)
+
     public int getPushUp() {
         return pushUp;
     }
@@ -80,8 +89,7 @@ public class PersonInfo implements Serializable {
         this.pushUp = pushUp;
     }
 
-    @Basic
-    @Column(name = "SQUAD", nullable = false)
+
     public int getSquad() {
         return squad;
     }
@@ -90,8 +98,7 @@ public class PersonInfo implements Serializable {
         this.squad = squad;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "TIMESTAMP")
+
     public Date getTimestamp() {
         return timestamp;
     }
