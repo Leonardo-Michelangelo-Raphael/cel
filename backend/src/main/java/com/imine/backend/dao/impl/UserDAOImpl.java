@@ -15,15 +15,14 @@ import javax.persistence.Persistence;
 public class UserDAOImpl implements UserDAO {
    private EntityManager entityManager = getEntityManager();
 
-   // 拿到EntityManager
    public EntityManager getEntityManager() {
       EntityManager em = null;
       try {
          EntityManagerFactory emf =
-               Persistence.createEntityManagerFactory("lushuifa");
+               Persistence.createEntityManagerFactory("user-system");
          em = emf.createEntityManager();
       } catch (Exception e) {
-         System.out.println("获取EntityManager失败了！原因如下：" + e);
+         e.printStackTrace();
       }
       return em;
    }
@@ -35,7 +34,7 @@ public class UserDAOImpl implements UserDAO {
 
          this.entityManager.persist(user);
          this.entityManager.getTransaction().commit();
-         System.out.println("添加用户成功！");
+         System.out.println("Add User Successfully");
       } catch (Exception e) {
          System.out.println("添加用户失败，原因如下：");
          e.printStackTrace();
