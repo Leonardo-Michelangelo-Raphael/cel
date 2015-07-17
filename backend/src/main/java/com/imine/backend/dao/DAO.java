@@ -13,4 +13,9 @@ public interface DAO<T> {
    long deleteEntity(long id);
 
    long updateEntity(T t);
+
+   /**
+    * Clean up all the data in database. Which is used for testing.
+    */
+   void cleanUp();
 }

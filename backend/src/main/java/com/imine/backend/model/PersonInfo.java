@@ -3,16 +3,15 @@ package com.imine.backend.model;
 import org.apache.openjpa.persistence.DataCache;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by dev on 2015/6/25.
  */
-@Entity
+@javax.persistence.Entity
 @Table(name = PersonInfo.TABLE_NAME)
 @DataCache(enabled = false)
-public class PersonInfo implements Serializable {
+public class PersonInfo implements Entity {
     public static final String TABLE_NAME = "PERSON_INFO";
 
     @Id

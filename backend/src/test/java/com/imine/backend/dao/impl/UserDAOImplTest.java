@@ -2,6 +2,7 @@ package com.imine.backend.dao.impl;
 
 import com.imine.backend.dao.UserDAO;
 import com.imine.backend.model.User;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -16,6 +17,7 @@ public class UserDAOImplTest {
    @BeforeClass
    public void setUp() {
       dao = new UserDAOImpl();
+      dao.cleanUp();
    }
 
    @Test
@@ -24,5 +26,20 @@ public class UserDAOImplTest {
       u.setUsername("TestUsername");
       u.setPassword("TestPassword");
       dao.createEntity(u);
+   }
+
+   @Test
+   public void testGetUserByUsername() {
+      String username = "EXIST_USERNAME";
+      User u = new User();
+      u.setUsername(username);
+      u.setPassword("");
+
+      dao.createEntity(u);
+
+      u = dao.getUserByUsername(username);
+
+      Assert.assertEquals(u.getUsername(), username);
+      Assert.assertTrue(u.getUserId() != 0 );
    }
 }

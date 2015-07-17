@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+                 version="1.0">
+    <package>com.imine.backend.model</package>
+    <entity class="User">
+        <named-query name="USER_SELECT_BY_NAME">
+            <query>select u from User as u where u.username = ?1</query>
+        </named-query>
+        <named-query name="CLEAN_UP_USER">
+            <query>delete from User</query>
+        </named-query>
+    </entity>
+</entity-mappings>

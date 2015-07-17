@@ -1,6 +1,5 @@
 package com.imine.backend.dao;
 
-import com.imine.backend.dto.impl.PersonInfoDTO;
 import com.imine.backend.model.PersonInfo;
 
 /**

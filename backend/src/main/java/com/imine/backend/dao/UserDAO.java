@@ -8,4 +8,19 @@ import com.imine.backend.model.User;
  * E-mail: baiyp@xiatekeji.com
  */
 public interface UserDAO extends DAO<User>{
+   User getUserByUsername(String username);
+
+   /**
+    * User login in.
+    * 
+    * @param u
+    */
+   void signIn(User u);
+
+   /**
+    * User sign up a new account.
+    * 
+    * @param u
+    */
+   void sighUp(User u);
 }
