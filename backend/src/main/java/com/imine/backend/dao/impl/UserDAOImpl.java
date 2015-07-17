@@ -2,7 +2,14 @@ package com.imine.backend.dao.impl;
 
 import com.imine.backend.dao.AbstractPersistenceEngine;
 import com.imine.backend.dao.UserDAO;
+import com.imine.backend.dao.exception.RestEntityAlreadyExistException;
+import com.imine.backend.dao.exception.RestEntityNotExistException;
+import com.imine.backend.dao.exception.RestException;
 import com.imine.backend.model.User;
+
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+
 
 /**
  * Author: Ethan(Baiyp) <br />
@@ -10,27 +17,25 @@ import com.imine.backend.model.User;
  * E-mail: baiyp@xiatekeji.com
  */
 public class UserDAOImpl extends AbstractPersistenceEngine implements UserDAO {
-   public long createEntity(User user) {
+   public long createEntity(User user) throws RestException {
       try {
+         getUserByUsername(user.getUsername());
+         throw new RestEntityAlreadyExistException(user.getUsername(), User.class);
+      } catch (RestEntityNotExistException e) {
          save(user);
-         System.out.println("Add User Successfully");
-      } catch (Exception e) {
-         e.printStackTrace();
+         return getUserByUsername(user.getUsername()).getUserId();
       }
-      return 0;
    }
 
-   public User getEntity(long id) {
-      User user = null;
-      try {
-         user = getEntityManager().find(User.class, id);
-      } catch (Exception e) {
-         e.printStackTrace();
+   public User getEntity(long id) throws RestException {
+      User user = getEntityManager().find(User.class, id);
+      if (user == null) {
+         throw new RestEntityNotExistException(String.valueOf(id), User.class);
       }
       return user;
    }
 
-   public long deleteEntity(long id) {
+   public long deleteEntity(long id) throws RestException {
       User user = getEntity(id);
       delete(user);
       return id;
@@ -49,16 +54,23 @@ public class UserDAOImpl extends AbstractPersistenceEngine implements UserDAO {
       getEntityManager().getTransaction().commit();
    }
 
-   public User getUserByUsername(String username) {
-      return getEntityManager()
-            .createQuery("select u from User as u where u.username = :username", User.class)
-            .setParameter("username", username).getSingleResult();
+   public User getUserByUsername(String username)
+         throws RestEntityNotExistException {
+      Query query =
+            getEntityManager().createQuery(
+                  "select u from User as u where u.username = :username",
+                  User.class).setParameter("username", username);
+      try {
+         return (User) query.getSingleResult();
+      } catch (NoResultException ex) {
+         throw new RestEntityNotExistException(username, ex);
+      }
    }
 
    /**
     * User login in.
     *
-    * @param u
+    * @param u, which is the target user.
     */
    public void signIn(User u) {
 
@@ -67,7 +79,7 @@ public class UserDAOImpl extends AbstractPersistenceEngine implements UserDAO {
    /**
     * User sign up a new account.
     *
-    * @param u
+    * @param u, which is the target user.
     */
    public void sighUp(User u) {
 

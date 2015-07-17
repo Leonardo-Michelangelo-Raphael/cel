@@ -1,5 +1,6 @@
 package com.imine.backend.dao;
 
+import com.imine.backend.dao.exception.RestEntityNotExistException;
 import com.imine.backend.model.User;
 
 /**
@@ -8,7 +9,7 @@ import com.imine.backend.model.User;
  * E-mail: baiyp@xiatekeji.com
  */
 public interface UserDAO extends DAO<User>{
-   User getUserByUsername(String username);
+   User getUserByUsername(String username) throws RestEntityNotExistException;
 
    /**
     * User login in.

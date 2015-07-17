@@ -5,7 +5,6 @@ import com.imine.backend.model.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.List;
 
 /**
  * Author: Ethan(Baiyp) <br />
@@ -47,9 +46,5 @@ public abstract class AbstractPersistenceEngine {
       this.entityManager.getTransaction().begin();
       this.entityManager.remove(entity);
       this.entityManager.getTransaction().commit();
-   }
-
-   public List execNativeQuary(String queryName) {
-      return this.entityManager.createNamedQuery(queryName).getResultList();
    }
 }

@@ -7,8 +7,6 @@
     <persistence-unit name="user-system" transaction-type="RESOURCE_LOCAL">
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 
-        <mapping-file>META_INF/user-orm.xml</mapping-file>
-
         <class>com.imine.backend.model.User</class>
 
         <properties>
