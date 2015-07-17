@@ -99,10 +99,16 @@ public class PersonInfo implements Entity {
 
 
     public Date getTimestamp() {
-        return timestamp;
+        if (this.timestamp != null)
+            return new Date(this.timestamp.getTime());
+        else
+            return null;
     }
 
     public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+        if (timestamp != null)
+            this.timestamp = new Date(timestamp.getTime());
+        else
+            this.timestamp = null;
     }
 }

@@ -11,7 +11,7 @@ public class RestEntityAlreadyExistException extends RestException {
    }
 
    public RestEntityAlreadyExistException(String msg, Class clazz) {
-      super(String.format("Entity %s: already exists.", clazz.toString(), msg));
+      super(String.format("Entity %s: %s already exists.", clazz.toString(), msg));
    }
 
    public RestEntityAlreadyExistException(String msg) {
